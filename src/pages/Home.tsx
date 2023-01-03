@@ -1,10 +1,11 @@
 import React from 'react';
+import TodoMain from '../component/todo/TodoMain';
 
 const Home = () => {
     return (
-        <div>
-          Home입니다.  
-        </div>
+        <>
+            <TodoMain />
+        </>
     );
 };
 

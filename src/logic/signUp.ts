@@ -5,18 +5,15 @@
 
 function emailCheck(email: string): boolean {
     if (email.includes('@') && email.includes('.')) {
-        alert('이메일이 유효합니다.');
         return true;
     }
     else {
         alert('이메일이 유효하지 않습니다..')
         return false;
     }
-    
 }
 function passwordCheck(pw1: string, pw2: string): boolean {
     if (pw1 && pw1.length >= 8 && pw1 === pw2) {
-        alert('비밀번호가 유효성 검사가 통과되었습니다.');
         return true;
     }
     else {

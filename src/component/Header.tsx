@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import '../styles/component/Header.scss';
+import '../styles/Header.scss';
 
 const Header = () => {
     const [url, setUrl] = useState<string[]>(['/', '/todo', '/auth']);
@@ -10,13 +10,13 @@ const Header = () => {
         if (localStorage.getItem('token')) {
             setMenuList(['Menu', 'Todo', 'Logout']);
             setUrl(['/', '/todo', '']);
-            console.log(url.length, menuList.length);
         }
     }, []);
 
     const logout = () => {
+        alert('로그아웃 되었습니다!');
         localStorage.removeItem('token');
-        window.location.href = "/"
+        window.location.href = "/";
     }
 
     return (

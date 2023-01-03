@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { loginAuth } from '../../logic/api/post';
-import '../../styles/component/auth/Login.scss';
+import '../../styles/auth/Login.scss';
 
 const Login = () => {
     const email = useRef<HTMLInputElement>(null);

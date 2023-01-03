@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Login from './Login';
 import Join from './Join';
-import '../../styles/component/auth/AuthChoice.scss';
+import '../../styles/auth/AuthChoice.scss';
 // import axios from 'axios';
 
 const AuthChoice = () => {

@@ -1,0 +1,58 @@
+.detail_todo_contain{
+    position: relative;
+    width: 100vw;
+    height: 94vh;
+    background-color: rgb(241, 241, 241);
+    .inner{
+        position: absolute;
+        left: 0; right: 0; top: 0; bottom: 0;
+        width: 40%;
+        height: 80%;
+        margin: auto;
+        background-color: #fff;
+        border-radius: 20px;
+        .todo_detail{
+            padding: 0 10%;
+            .todo_detail_title{
+                font-size: 50px;
+                color: #333;
+            }
+            .todo_detail_date{
+                font-size: 16px;
+                font-weight: 700;
+                color: darkgrey;
+            }
+            .todo_detail_content{
+                color: #333;
+                font-size: 20px;
+                font-weight: 600;
+            }
+        }
+        .detail_buttons{
+            position: absolute;
+            width: 150px;
+            display: flex;
+            justify-content: space-around;
+            bottom: 20px; right: 20px;
+            margin-top: 10px;
+            .btn{
+                margin-top: 10px;
+                border: 0;
+                border-radius: 5px;
+                width: 60px;
+                height: 40px;
+                font-size: 14px;
+                font-weight: 700;
+                cursor: pointer;
+            }
+            .edit_button{
+                background-color: rgb(214, 212, 212);
+                color: #333;
+            }
+            .delete_button{
+                background-color: rgb(247, 96, 96);
+                color: #fff;
+            }
+        }
+    }
+}
