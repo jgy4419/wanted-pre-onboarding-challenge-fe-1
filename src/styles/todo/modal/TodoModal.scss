@@ -28,4 +28,9 @@
         background-color: #fff;
         border-radius: 20px;
     }
+    @media (max-width: 900px) {
+        .todo_modal_inner{
+            width: 80%;
+        }
+    }
 }

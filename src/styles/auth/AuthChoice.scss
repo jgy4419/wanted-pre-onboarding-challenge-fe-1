@@ -29,4 +29,13 @@
             background-color: rgb(246, 246, 230);
         }
     }
+    @media (max-width: 900px) {
+        .inner{
+            flex-direction: column;
+            margin-top: 20%;
+            .choice{
+                width: 100%;
+            }
+        }
+    }
 }

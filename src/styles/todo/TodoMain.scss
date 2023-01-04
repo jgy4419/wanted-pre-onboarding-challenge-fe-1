@@ -22,13 +22,15 @@
                 margin-top: 20px;
                 font-size: 16px;
                 font-weight: 700;
-                background-color: rgb(235, 235, 235);
+                background-color: #EAE7B1;
+                color: #333;
                 transition: .3s;
                 border: 0;
                 border-radius: 10px;
             }
             .todo_blur_button:hover {
-                background-color: rgb(201, 201, 201)
+                background-color: #A6BB8D;
+                color: #fff;
             }
         }
     }

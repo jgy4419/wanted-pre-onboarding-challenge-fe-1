@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 import '../styles/Header.scss';
 
 const Header = () => {
-    const [url, setUrl] = useState<string[]>(['/', '/todo', '/auth']);
-    const [menuList, setMenuList] = useState<string[]>(['Menu', 'Todo', 'Login']);
+    const [url, setUrl] = useState<string[]>(['/', '/auth']);
+    const [menuList, setMenuList] = useState<string[]>(['Main', 'Login']);
 
     useEffect(() => {
         if (localStorage.getItem('token')) {
-            setMenuList(['Menu', 'Todo', 'Logout']);
-            setUrl(['/', '/todo', '']);
+            setMenuList(['Main']);
+            setUrl(['/']);
         }
     }, []);
 
@@ -22,7 +22,7 @@ const Header = () => {
     return (
         <header className="header_contain">
             <div className="header_inner">
-                <img className="logo" src="" alt="로고" />
+                <Link to="/"><p className="logo">wanted</p></Link>
                 <ul className="menu_list">
                     {
                         menuList.map((item, index) => {

@@ -1,25 +1,30 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import TodoModal from './modal/TodoModal';
 import axios from 'axios';
 import '../../styles/todo/TodoList.scss';
-import { deleteTodo } from '../../logic/api/delete';
-import { updateTodo } from '../../logic/api/put';
 import { TodoType } from '../../type/type';
-
-
-export type modalStateType = {
-    modalStateFunc(): void
-}
+import {modalStateType } from '../../type/type';
 
 const TodoList = () => {
     const blurTitle = ['오늘 할 일 ~~', '오늘 할 일 ~~~', '오늘 할 일 ~!!~!', '오늘 할 일 !!~!!'];
     const blurContent = ['오늘은 ~~', '오늘은 ~~', '오늘은 ~~', '오늘은 ~~'];
     const [todoData, setTodoData] = useState<TodoType[]>([] as TodoType[]);
-    const [modalState, setModalState] = useState<boolean>(false);
-    const [editState, setEditState] = useState<boolean>(false);
-    const editTitle = useRef<HTMLInputElement>(null);
-    const editContent = useRef<HTMLTextAreaElement>(null);
+    const [modalState, setModalState] = useState<string>('');
+    const [clickedTodo, setClickedTodo] = useState<string>('');
+
+    const modalStateFunc = (type: string): void => {
+        setModalState(type);
+    };
+
+    function modalData (id: string): void{
+        setClickedTodo(id);
+        modalStateFunc('detail');
+    }
+
+    const props: modalStateType = {
+        modalState,
+        modalStateFunc
+    }
 
     useEffect(() => {
         // todo 리스트 가져오기
@@ -30,22 +35,8 @@ const TodoList = () => {
         }).then(res => {
             setTodoData(res.data.data);   
         })
-    }, [todoData, editState]); 
-
-    const modalStateFunc = (): void => {
-        setModalState(!modalState);
-    };
-
-    const todoEdit = (id: string, title?: string, content?: string) => {
-        if(editState === false){
-            setEditState(true);
-        } else {
-            if(title !== undefined && content !== undefined){
-                let state = updateTodo(id, title, content);
-                setEditState(false);
-            }
-        }
-    }
+        // modal이 변경되면 리스트 재렌더링 없이 다시 출력하기
+    }, [modalState]); 
 
     return (
         <>
@@ -78,45 +69,24 @@ const TodoList = () => {
                             })
                             : todoData.map((item, index) => {
                                 return (
-                                    <Link to={`/${item.id}`} ><li key={index} className="todo_list">
-                                        <div className="left">
-                                            {
-                                                editState === true
-                                                ? 
-                                                <>
-                                                    <label>제목</label>
-                                                    <input 
-                                                        ref={editTitle}
-                                                        className="edit_title"
-                                                        placeholder={item.title}/>
-                                                </>
-                                                : <h2 className="title">{item.title}</h2>
-                                            }
-                                            {
-                                                editState === true
-                                                ? 
-                                                <>
-                                                    <br/>
-                                                    <label>내용</label>
-                                                    <textarea
-                                                        ref={editContent}
-                                                        className="edit_content"
-                                                        placeholder={item.content}/>
-                                                </>
-                                                : <p className="content">{ item.content }</p>
-                                            }
+                                    <li key={index} className="todo_list"
+                                    onClick={() => {modalData(item.id)}}>
+                                        <div className="content">
+                                            <h2 className="title">{item.title}</h2>
+                                            <p className="date">{item.createdAt.substr(0, 10)}</p>
                                         </div>
-                                    </li></Link>
+                                    </li>
                                 )
                             })
                         }
                     </ul>
-                    <button className="add_todo_button" onClick={ () => {modalStateFunc()}}>+</button>
+                    <button className="add_todo_button" onClick={ () => {modalStateFunc('create')}}>+</button>
                 </div>
             </div>
             <div className="todo_modal">
                 {
-                    modalState && <TodoModal modalStateFunc={modalStateFunc}/>
+                    modalState === 'create' || modalState === 'detail' ? <TodoModal {...props} clickedTodo={ clickedTodo } />
+                    : null
                 }
             </div>
         </>

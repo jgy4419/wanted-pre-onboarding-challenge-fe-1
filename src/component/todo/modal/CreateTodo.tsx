@@ -1,16 +1,19 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { createPost } from '../../../logic/api/post';
 import '../../../styles/todo/modal/CreateTodo.scss';
+import { modalStateType } from '../../../type/type';
 
 const CreateTodo = () => {
     const title = useRef<HTMLInputElement>(null);
     const content = useRef<HTMLTextAreaElement>(null);
+    // useEffect(() => {
+    // }, []);
     return (
         <div className="create_todo_modal_contain">
             <div className="todo_modal_inner">
                 <h1 className="todo_title">TODO 생성</h1>
                 <div className="create_todo_title">
-                    <label className="create_todo_title_label">TODO 이름</label>
+                    <label className="create_todo_title_label">TODO 제목</label>
                     <input 
                         className="create_todo_title_input"
                         ref={title}

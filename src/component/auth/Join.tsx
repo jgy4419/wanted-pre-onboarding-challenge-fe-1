@@ -1,9 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { emailCheck, passwordCheck } from '../../logic/signUp';
 import { createUser } from '../../logic/api/post';
 import '../../styles/auth/Join.scss';
 
 const Join = () => {
+    const narvigate = useNavigate();
+
     const [emailCheck_state, setEmailCheck_state] = useState(false);
     const [pwCheck_state, setPwCheck_state] = useState(false);
     const email = useRef<HTMLInputElement>(null);
@@ -16,14 +19,14 @@ const Join = () => {
     }
     function join() {
         createUser(email.current!.value, pw1.current!.value);
-        alert('회원가입이 완료되었습니다!');
+        narvigate('/');
     }
     useEffect(() => {
         console.log(emailCheck_state);
         console.log(pwCheck_state);
         
         if (emailCheck_state && pwCheck_state) {
-            console.log(document.querySelector('.join_btn'));
+            alert('유효성 검사가 완료 되었습니다! 회원가입 버튼을 눌러주세요.');
         }
     }, [emailCheck_state, pwCheck_state]);
     return (
@@ -35,7 +38,11 @@ const Join = () => {
                 <input className="pw" type="password" ref={pw2} placeholder='다시 한 번 입력해주세요.' />
                 <div className="btn_contain">
                     <button className="auth_btn auth" onClick={ () => {check()}}>유효성 검사</button>
-                    <button className="auth_btn join" onClick={() => { join() } } disabled={ emailCheck_state && pwCheck_state ? false : true}>회원가입</button>
+                    <button className="auth_btn join"
+                        style={ emailCheck_state && pwCheck_state ?
+                            { cursor: "pointer" } : {cursor: "not-allowed"}}
+                        
+                        onClick={() => { join() } } disabled={ emailCheck_state && pwCheck_state ? false : true}>회원가입</button>
                 </div>
             </div>
         </div>

@@ -2,7 +2,7 @@
     position: relative;
     margin: auto;
     width: 80%;
-    height: 80%;
+    height: 400px;
     .text{
         font-size: 30px;
         font-weight: 700;
@@ -34,11 +34,21 @@
                 background-color: rgb(182, 129, 129);
                 color: #fff;
             }
+            .join{
+                background-color: #A6BB8D;
+                color: #fff;
+            }
+            .join:hover{
+                background-color: #A6BB8D;
+                color: #fff;
+            }
         }
         .btn_contain > button{
             width: 45%;
             font-weight: 700;
             cursor: pointer;
+            // background-color: #A6BB8D;
+            // color: #fff;
         }
     }
 }

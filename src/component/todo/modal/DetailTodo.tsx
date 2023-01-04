@@ -1,21 +1,22 @@
 import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
-import { useParams, useNavigate } from 'react-router-dom';
-import { TodoType } from '../../type/type';
-import { deleteTodo } from '../../logic/api/delete';
-import { updateTodo } from '../../logic/api/put';
-import '../../styles/todo/DetailTodo.scss';
+import { TodoType } from '../../../type/type';
+import { modalTypeFunc } from '../../../type/type';
+import { deleteTodo } from '../../../logic/api/delete';
+import { updateTodo } from '../../../logic/api/put';
+import '../../../styles/todo/DetailTodo.scss';
 
-const DetailTodo = () => {
-    const { id } = useParams();
-    const navigate = useNavigate();
+type defailTodo = {
+    clickedTodo: string
+}
+const DetailTodo = ({ clickedTodo }: defailTodo) => {
     const [detailTodo, setDetailTodo] = useState<TodoType | undefined>();
     const [editState, setEditState] = useState<boolean>(false);
     const editTitle = useRef<HTMLInputElement>(null);
     const editContent = useRef<HTMLTextAreaElement>(null);
 
     useEffect(() => {
-        const todoDetailData = axios.get(`${process.env.REACT_APP_API_URL}/todos/${id}`, {
+        const todoDetailData = axios.get(`${process.env.REACT_APP_API_URL}/todos/${clickedTodo}`, {
             headers: {
                 Authorization: 'login token'
             }
@@ -27,6 +28,7 @@ const DetailTodo = () => {
             setDetailTodo(res.data.data);
             console.log(detailTodo);
         });
+        console.log(clickedTodo);
     }, [editState]);
 
     const todoEdit = (id: string, title?: string, content?: string) => {
@@ -41,7 +43,6 @@ const DetailTodo = () => {
     }
     const deleteTodoItem = (id: string) => {
         deleteTodo(detailTodo!.id);
-        navigate(-1);
     }
 
     return (

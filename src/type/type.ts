@@ -5,3 +5,13 @@ export type TodoType = {
     title: string,
     updateAt: string
 }
+
+export type modalStateType = {
+    modalStateFunc(type: string): void
+    modalState: string
+}
+
+
+export type modalTypeFunc = {
+    modalTypeFunc(type: string): void
+}
