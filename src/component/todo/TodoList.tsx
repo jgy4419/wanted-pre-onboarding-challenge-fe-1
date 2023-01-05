@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import TodoModal from './modal/TodoModal';
-import axios from 'axios';
 import '../../styles/todo/TodoList.scss';
 import { TodoType } from '../../type/type';
-import {modalStateType } from '../../type/type';
 
+import { getTodoList } from '../../logic/api/get';
 const TodoList = () => {
-    const blurTitle = ['오늘 할 일 ~~', '오늘 할 일 ~~~', '오늘 할 일 ~!!~!', '오늘 할 일 !!~!!'];
-    const blurContent = ['오늘은 ~~', '오늘은 ~~', '오늘은 ~~', '오늘은 ~~'];
+    const blurTitle = [
+        '오늘 할 일 ~~', '오늘 할 일 ~~~', '오늘 할 일 ~!!~!', '오늘 할 일 !!~!!',
+        '오늘 할 일 !!~!!', '오늘 할 일 !!~!!', '오늘은~~!', 'TODOTOOD'
+    ];
+    const blurContent = [
+        '오늘은 ~~', '오늘은 ~~', '오늘은 ~~', '오늘은 ~~',
+        '오늘은 ~ 5, 오늘은 6', '오늘은!! 7', '오늘은 8!'
+    ];
     const [todoData, setTodoData] = useState<TodoType[]>([] as TodoType[]);
     const [modalState, setModalState] = useState<string>('');
     const [clickedTodo, setClickedTodo] = useState<string>('');
@@ -21,20 +26,17 @@ const TodoList = () => {
         modalStateFunc('detail');
     }
 
-    const props: modalStateType = {
+    const props = {
         modalState,
         modalStateFunc
     }
 
     useEffect(() => {
         // todo 리스트 가져오기
-        axios.get(`${process.env.REACT_APP_API_URL}/todos`, {
-            headers: {
-                Authorization: 'login token'
-            }
-        }).then(res => {
-            setTodoData(res.data.data);   
-        })
+        (async () => {
+            let todoListData = await getTodoList();
+            setTodoData(todoListData);
+        })();
         // modal이 변경되면 리스트 재렌더링 없이 다시 출력하기
     }, [modalState]); 
 
@@ -53,7 +55,7 @@ const TodoList = () => {
                         }}>
                 <div className="todo_list_inner">
                     {
-                        todoData.length === 0 && localStorage.getItem('token') 
+                        String(todoData).length === 0 && localStorage.getItem('token') 
                         && <p className="none_todo_text">데이터가 없습니다!</p>
                     }
                     <ul className="todo_lists">

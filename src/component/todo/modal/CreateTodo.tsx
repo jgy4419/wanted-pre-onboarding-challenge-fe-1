@@ -1,13 +1,10 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 import { createPost } from '../../../logic/api/post';
 import '../../../styles/todo/modal/CreateTodo.scss';
-import { modalStateType } from '../../../type/type';
 
 const CreateTodo = () => {
     const title = useRef<HTMLInputElement>(null);
     const content = useRef<HTMLTextAreaElement>(null);
-    // useEffect(() => {
-    // }, []);
     return (
         <div className="create_todo_modal_contain">
             <div className="todo_modal_inner">

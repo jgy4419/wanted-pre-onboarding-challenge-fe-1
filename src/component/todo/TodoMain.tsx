@@ -1,4 +1,3 @@
-import React from 'react';
 import TodoList from './TodoList';
 import '../../styles/todo/TodoMain.scss';
 import { Link } from 'react-router-dom';

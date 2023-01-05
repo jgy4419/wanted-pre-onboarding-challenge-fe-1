@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { emailCheck, passwordCheck } from '../../logic/signUp';
 import { createUser } from '../../logic/api/post';
@@ -9,6 +9,7 @@ const Join = () => {
 
     const [emailCheck_state, setEmailCheck_state] = useState(false);
     const [pwCheck_state, setPwCheck_state] = useState(false);
+
     const email = useRef<HTMLInputElement>(null);
     const pw1 = useRef<HTMLInputElement>(null);
     const pw2 = useRef<HTMLInputElement>(null);
@@ -22,9 +23,6 @@ const Join = () => {
         narvigate('/');
     }
     useEffect(() => {
-        console.log(emailCheck_state);
-        console.log(pwCheck_state);
-        
         if (emailCheck_state && pwCheck_state) {
             alert('유효성 검사가 완료 되었습니다! 회원가입 버튼을 눌러주세요.');
         }

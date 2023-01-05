@@ -34,8 +34,6 @@ function loginAuth(email: string, password: string): void {
 
 // 글 생성
 function createPost(title: string, content: string) {
-    console.log(process.env);
-    
     const createPost = axios.post(`${process.env.REACT_APP_API_URL}/todos`, {
         title,
         content

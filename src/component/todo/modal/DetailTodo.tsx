@@ -1,10 +1,9 @@
-import React, { useEffect, useState, useRef } from 'react';
-import axios from 'axios';
+import { useEffect, useState, useRef } from 'react';
 import { TodoType } from '../../../type/type';
-import { modalTypeFunc } from '../../../type/type';
 import { deleteTodo } from '../../../logic/api/delete';
 import { updateTodo } from '../../../logic/api/put';
-import '../../../styles/todo/DetailTodo.scss';
+import { todoDetailData } from '../../../logic/api/get';
+import '../../../styles/todo/modal/DetailTodo.scss';
 
 type defailTodo = {
     clickedTodo: string
@@ -16,19 +15,10 @@ const DetailTodo = ({ clickedTodo }: defailTodo) => {
     const editContent = useRef<HTMLTextAreaElement>(null);
 
     useEffect(() => {
-        const todoDetailData = axios.get(`${process.env.REACT_APP_API_URL}/todos/${clickedTodo}`, {
-            headers: {
-                Authorization: 'login token'
-            }
-        });
-
-        todoDetailData.then(res => {
-            console.log(res.data.data);
-            
-            setDetailTodo(res.data.data);
-            console.log(detailTodo);
-        });
-        console.log(clickedTodo);
+        (async () => {
+            const todoData = await todoDetailData(clickedTodo);
+            setDetailTodo(todoData);
+        })();
     }, [editState]);
 
     const todoEdit = (id: string, title?: string, content?: string) => {
@@ -36,13 +26,13 @@ const DetailTodo = ({ clickedTodo }: defailTodo) => {
             setEditState(true);
         } else {
             if(title !== undefined && content !== undefined){
-                let state = updateTodo(id, title, content);
+                updateTodo(id, title, content);
                 setEditState(false);
             }
         }
     }
     const deleteTodoItem = (id: string) => {
-        deleteTodo(detailTodo!.id);
+        deleteTodo(id);
     }
 
     return (
