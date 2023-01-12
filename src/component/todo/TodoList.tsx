@@ -2,17 +2,12 @@ import React, { useState, useEffect } from 'react';
 import TodoModal from './modal/TodoModal';
 import '../../styles/todo/TodoList.scss';
 import { TodoType } from '../../type/type';
+import useTokenCheck from '../../hook/login/useTokenCheck';
 
 import { getTodoList } from '../../logic/api/get';
 const TodoList = () => {
-    const blurTitle = [
-        '오늘 할 일 ~~', '오늘 할 일 ~~~', '오늘 할 일 ~!!~!', '오늘 할 일 !!~!!',
-        '오늘 할 일 !!~!!', '오늘 할 일 !!~!!', '오늘은~~!', 'TODOTOOD'
-    ];
-    const blurContent = [
-        '오늘은 ~~', '오늘은 ~~', '오늘은 ~~', '오늘은 ~~',
-        '오늘은 ~ 5, 오늘은 6', '오늘은!! 7', '오늘은 8!'
-    ];
+    const { tokenState } = useTokenCheck();
+
     const [todoData, setTodoData] = useState<TodoType[]>([] as TodoType[]);
     const [modalState, setModalState] = useState<string>('');
     const [clickedTodo, setClickedTodo] = useState<string>('');
@@ -42,37 +37,19 @@ const TodoList = () => {
 
     return (
         <>
-            <div className="todo_list_contain"
-                style={
-                    !localStorage.getItem('token')
-                        ? {
-                            filter: "blur(4px)",
-                            pointerEvents: "none"
-                        }
-                        : {
-                            filter: "blur(0px)",
-                            pointerEvents: "auto"
-                        }}>
+            <div className="todo_list_contain">
                 <div className="todo_list_inner">
                     {
-                        String(todoData).length === 0 && localStorage.getItem('token') 
-                        && <p className="none_todo_text">데이터가 없습니다!</p>
+                        todoData.length === 0 && tokenState
+                            ? <p className="none_todo_text">데이터가 없습니다!</p>
+                            : null
                     }
                     <ul className="todo_lists">
                         {
-                            !localStorage.getItem('token') ?
-                            blurTitle.map((item, index) => {
-                                return (
-                                    <li key={index} className="todo_list">
-                                        <h2 className="title">{ item }</h2>
-                                        <p className="content">{ blurContent[index] }</p>
-                                    </li>
-                                )
-                            })
-                            : todoData.map((item, index) => {
+                            todoData.map((item, index) => {
                                 return (
                                     <li key={index} className="todo_list"
-                                    onClick={() => {modalData(item.id)}}>
+                                        onClick={() => { modalData(item.id) }}>
                                         <div className="content">
                                             <h2 className="title">{item.title}</h2>
                                             <p className="date">{item.createdAt.substr(0, 10)}</p>

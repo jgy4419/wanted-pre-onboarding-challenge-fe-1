@@ -5,7 +5,7 @@ import { createUser } from '../../logic/api/post';
 import '../../styles/auth/Join.scss';
 
 const Join = () => {
-    const narvigate = useNavigate();
+    const navigate = useNavigate();
 
     const [emailCheck_state, setEmailCheck_state] = useState(false);
     const [pwCheck_state, setPwCheck_state] = useState(false);
@@ -20,7 +20,7 @@ const Join = () => {
     }
     function join() {
         createUser(email.current!.value, pw1.current!.value);
-        narvigate('/');
+        navigate('/');
     }
     useEffect(() => {
         if (emailCheck_state && pwCheck_state) {
