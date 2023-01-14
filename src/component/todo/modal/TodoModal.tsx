@@ -1,12 +1,8 @@
-import React from 'react';
 import CreateTodo from './CreateTodo';
 import DetailTodo from './DetailTodo';
 import '../../../styles/todo/modal/TodoModal.scss';
-import { modalStateType } from '../../../type/type';
+import { modalPropsType } from '../../../utils/types/todo/type';
 
-type modalPropsType = modalStateType & {
-    clickedTodo: string
-}
 
 const TodoModal = ({ modalStateFunc, modalState, clickedTodo }: modalPropsType) => {
     return (

@@ -1,8 +1,8 @@
 import { useEffect, useState, useRef } from 'react';
-import { TodoType } from '../../../type/type';
-import { deleteTodo } from '../../../logic/api/delete';
-import { updateTodo } from '../../../logic/api/put';
-import { todoDetailData } from '../../../logic/api/get';
+import { TodoType } from '../../../utils/types/todo/type';
+import { deleteTodo } from '../../../logic/api/todo/delete';
+import { updateTodo } from '../../../logic/api/todo/put';
+import { todoDetailData } from '../../../logic/api/todo/get';
 import '../../../styles/todo/modal/DetailTodo.scss';
 
 type defailTodo = {

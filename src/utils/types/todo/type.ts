@@ -6,7 +6,8 @@ export type TodoType = {
     updateAt: string
 }
 
-export type modalStateType = {
+export type modalPropsType = {
     modalStateFunc(type: string): void
     modalState: string
+    clickedTodo: string
 }

@@ -1,5 +1,5 @@
-import React, { useRef } from 'react';
-import { createPost } from '../../../logic/api/post';
+import { useRef } from 'react';
+import { createPost } from '../../../logic/api/todo/post';
 import '../../../styles/todo/modal/CreateTodo.scss';
 
 const CreateTodo = () => {

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { emailCheck, passwordCheck } from '../../logic/signUp';
-import { createUser } from '../../logic/api/post';
+import { createUser } from '../../logic/api/auth/post';
 import '../../styles/auth/Join.scss';
 
 const Join = () => {

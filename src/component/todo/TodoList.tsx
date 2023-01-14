@@ -1,16 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import TodoModal from './modal/TodoModal';
 import '../../styles/todo/TodoList.scss';
-import { TodoType } from '../../type/type';
-import useTokenCheck from '../../hook/login/useTokenCheck';
+import { TodoType } from '../../utils/types/todo/type';
 
-import { getTodoList } from '../../logic/api/get';
+import { getTodoList } from '../../logic/api/todo/get';
+import { useQuery } from 'react-query';
 const TodoList = () => {
-    const { tokenState } = useTokenCheck();
-
-    const [todoData, setTodoData] = useState<TodoType[]>([] as TodoType[]);
-    const [modalState, setModalState] = useState<string>('');
-    const [clickedTodo, setClickedTodo] = useState<string>('');
+    const { data: todoData } = useQuery("getTodoList", getTodoList, {
+        refetchOnWindowFocus: false,
+        retry: 0,
+        onSuccess: data => {
+            console.log(data);
+        },
+        onError: error => {
+            alert(`게시글을 불러오는데 실패했습니다. 이유는 다음과 같습니다. ${error}`)
+        }
+    });
+    
+    const [modalState, setModalState] = useState('');
+    const [clickedTodo, setClickedTodo] = useState('');
 
     const modalStateFunc = (type: string): void => {
         setModalState(type);
@@ -25,30 +33,16 @@ const TodoList = () => {
         modalState,
         modalStateFunc
     }
-
-    useEffect(() => {
-        // todo 리스트 가져오기
-        (async () => {
-            let todoListData = await getTodoList();
-            setTodoData(todoListData);
-        })();
-        // modal이 변경되면 리스트 재렌더링 없이 다시 출력하기
-    }, [modalState]); 
-
+    
     return (
         <>
             <div className="todo_list_contain">
                 <div className="todo_list_inner">
-                    {
-                        todoData.length === 0 && tokenState
-                            ? <p className="none_todo_text">데이터가 없습니다!</p>
-                            : null
-                    }
                     <ul className="todo_lists">
                         {
-                            todoData.map((item, index) => {
+                            Array.isArray(todoData) && todoData.map((item: TodoType) => {
                                 return (
-                                    <li key={index} className="todo_list"
+                                    <li key={item.id} className="todo_list"
                                         onClick={() => { modalData(item.id) }}>
                                         <div className="content">
                                             <h2 className="title">{item.title}</h2>

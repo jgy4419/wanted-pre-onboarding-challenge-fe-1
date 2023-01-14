@@ -11,6 +11,7 @@ function updateTodo(id: string, title: string, content: string) {
             }
         });
         update.then(() => {
+            alert('변경되었습니다.')
             return;
         }).catch(err => {
             console.log(err);

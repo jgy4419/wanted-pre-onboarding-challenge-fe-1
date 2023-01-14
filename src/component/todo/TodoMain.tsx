@@ -1,26 +1,19 @@
-import TodoList from './TodoList';
 import '../../styles/todo/TodoMain.scss';
 import { Link } from 'react-router-dom';
+import { blurTitle, blurContent } from '../../utils/constants';
+import * as Main from '../../styles/styledComponnts/todo/styleTodoMain';
 
 const TodoMain = () => {
-    const blurTitle = [
-        '오늘 할 일 ~~', '오늘 할 일 ~~~', '오늘 할 일 ~!!~!', '오늘 할 일 !!~!!',
-        '오늘 할 일 !!~!!', '오늘 할 일 !!~!!', '오늘은~~!', 'TODOTOOD'
-    ];
-    const blurContent = [
-        '오늘은 ~~', '오늘은 ~~', '오늘은 ~~', '오늘은 ~~',
-        '오늘은 ~ 5, 오늘은 6', '오늘은!! 7', '오늘은 8!'
-    ];
     return (
-        <div className="todo_contain">
+        <Main.TodoContain>
             <div className="todo_inner">
-                    <div className="before_login_text">
-                        <h2 className="todo_blur_text">Todo를 만들기 위해서는 로그인이 필요해요!</h2>
+                    <Main.BeforeLoginText>
+                        <Main.TodoBlurText>Todo를 만들기 위해서는 로그인이 필요해요!</Main.TodoBlurText>
                         <Link to='/auth'>
-                            <button className="todo_blur_button">로그인 하러 가기</button>
+                            <Main.TodoBlurButton>로그인 하러 가기</Main.TodoBlurButton>
                         </Link>
                         
-                    </div>
+                    </Main.BeforeLoginText>
             </div>
             <div className="todo_lists"
             style={{
@@ -39,7 +32,7 @@ const TodoMain = () => {
                     })
                 }
             </div>
-        </div>
+        </Main.TodoContain>
     );
 };
 

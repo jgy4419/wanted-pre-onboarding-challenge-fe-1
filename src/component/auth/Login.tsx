@@ -1,5 +1,5 @@
 import React, { useRef, KeyboardEvent } from 'react';
-import { loginAuth } from '../../logic/api/post';
+import { loginAuth } from '../../logic/api/auth/post';
 import '../../styles/auth/Login.scss';
 
 const Login = () => {
@@ -14,7 +14,9 @@ const Login = () => {
         <div className="login_contain">
             <h1 className="text">로그인</h1>
             <div className="input_contain">
-                <input className="id" ref={email} type="email" placeholder="id"/>
+                <input className="id" ref={email} type="email" placeholder="id"
+                    onKeyDown={(keyBoard) => { loginState(keyBoard) }}
+                />
                 <input className="pw" ref={password} type="password" placeholder='pw'
                     onKeyDown={(keyBoard) => { loginState(keyBoard) }}
                 />

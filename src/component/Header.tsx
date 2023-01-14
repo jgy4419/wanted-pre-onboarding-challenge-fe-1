@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import useTokenCheck from '../hook/login/useTokenCheck';
 import '../styles/Header.scss';
@@ -6,8 +6,8 @@ import '../styles/Header.scss';
 const Header = () => {
     const { tokenState } = useTokenCheck();
 
-    const [url, setUrl] = useState<string[]>(['/', '/auth']);
-    const [menuList, setMenuList] = useState<string[]>(['Main', 'Login']);
+    const [url, setUrl] = useState(['/', '/auth']);
+    const [menuList, setMenuList] = useState(['Main', 'Login']);
  
     useEffect(() => {
         if (tokenState) {
