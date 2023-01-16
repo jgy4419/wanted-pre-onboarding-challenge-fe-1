@@ -1,5 +1,12 @@
 # 원티드 프리온보딩 챌린지 프론트엔드 코스 사전과제
 
+## 실행
+### Node 버전 16 이상
+
+1. git clone https://github.com/jgy4419/wanted-pre-onboarding-challenge-fe-1.git
+2. npm install
+3. npm start (실행 전 node 버전 확인)
+
 # 로그인 하기 전 메인화면
 <img width="1433" alt="image" src="https://user-images.githubusercontent.com/76980526/210545361-90233bf4-eade-4554-b5e8-c119293ca635.png">
 
@@ -55,38 +62,3 @@
 - 삭제 후 게시글 리스트
 <img width="1308" alt="image" src="https://user-images.githubusercontent.com/76980526/210545043-e0406302-5692-44d5-aadb-b5e2e169fe60.png">
 
-# 230112 리팩토링
-### Token가져오는 부분, 로그인 유무에 따라 보이는 UI Custom Hook, HOC를 사용해 변경
-
-> 변경이유 : 프로젝트가 커질 수록, 로그인 유무에 따라 보여질 페이지가 많아질 것 같다는 생각이 들어서 하나의 custom hook + hoc을 만들었습니다. (이렇게 하는 게 맞나..)
-
->추가로 token 유무에 따라 어떤 데이터들을 사용해서 보여줘야 되는지 결정되는 부분들이 많아서 하나의 custom hook으로 만들었습니다.
-
-## Before 
-### 기존 TodoList.tsx 파일
-![image](https://user-images.githubusercontent.com/76980526/211983531-55e9e103-9b0e-4421-9e31-940037e3b2b8.png)
-
-- 초록색 사각형은 로그인 했는지 유무 (Token이 존재하는지?)
-- 빨간색 사격형은 로그인 했는지에 따라 보여질 UI
-  - 로그인 유무에 따라 보여질 UI들이 생길 때 마다 위와 같이 작업을 해야되는 번거로움(?) 이 있다고 생각이 들었다.
-  
-## After
-### /src/hook/login/useLoginState.tsx
-### /src/hook/login/useTokenCheck.tsx
-![image](https://user-images.githubusercontent.com/76980526/211983819-37104d37-ca5a-4f49-9be1-12df5b916b35.png)
-
-![image](https://user-images.githubusercontent.com/76980526/211983966-4c6abea2-3459-4a18-9c79-d7dc278a971d.png)
-
-### Router.tsx
-![image](https://user-images.githubusercontent.com/76980526/211984012-7589bf14-508e-4781-8943-7e2dd0f28d00.png)
-
-## 변경 후 장점
-1. 컴포넌트가 완벽하게 불리됨으로 나중에 수정 시 편리.
-2. 로그인 유무 확인, 보여질 UI 정해야 될 상황에 Hook을 불러옴으로 간편하게 재사용이가능.
-
-그 이외 수정 내용
-
-- 로그인할 때 id, password 입력창에서 enter 누르면 로그인 시도하도록 변경.
-- 게시글 삭제할 때 '정말로 삭제할 것인지?' alert창 생겼을 때 취소 안 됐던 부분 수정.
-- 파일 구조 개선.
-- 추가로 비동기 요청(get, post, put, delete)이랑, Input 관련 로직도 Custom Hook으로 만들어서 사용할 예정이다~!
