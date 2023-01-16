@@ -10,7 +10,6 @@ function createUser(email: string, password: string): void {
         alert(res.data.message);
     }).catch(err => {
         console.log(err);
-        
     })
 }
 

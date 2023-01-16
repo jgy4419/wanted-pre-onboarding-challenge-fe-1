@@ -2,21 +2,10 @@ import { useState } from 'react';
 import TodoModal from './modal/TodoModal';
 import '../../styles/todo/TodoList.scss';
 import { TodoType } from '../../utils/types/todo/type';
-
-import { getTodoList } from '../../logic/api/todo/get';
-import { useQuery } from 'react-query';
+import { useGetTodo } from '../../hook/api/todo/useGet';
 const TodoList = () => {
-    const { data: todoData } = useQuery("getTodoList", getTodoList, {
-        refetchOnWindowFocus: false,
-        retry: 0,
-        onSuccess: data => {
-            console.log(data);
-        },
-        onError: error => {
-            alert(`게시글을 불러오는데 실패했습니다. 이유는 다음과 같습니다. ${error}`)
-        }
-    });
-    
+    const getTodo = useGetTodo();
+
     const [modalState, setModalState] = useState('');
     const [clickedTodo, setClickedTodo] = useState('');
 
@@ -33,14 +22,14 @@ const TodoList = () => {
         modalState,
         modalStateFunc
     }
-    
+
     return (
         <>
             <div className="todo_list_contain">
                 <div className="todo_list_inner">
                     <ul className="todo_lists">
                         {
-                            Array.isArray(todoData) && todoData.map((item: TodoType) => {
+                            Array.isArray(getTodo) && getTodo.map((item: TodoType) => {
                                 return (
                                     <li key={item.id} className="todo_list"
                                         onClick={() => { modalData(item.id) }}>

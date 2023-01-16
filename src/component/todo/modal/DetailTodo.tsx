@@ -1,45 +1,40 @@
-import { useEffect, useState, useRef } from 'react';
-import { TodoType } from '../../../utils/types/todo/type';
-import { deleteTodo } from '../../../logic/api/todo/delete';
-import { updateTodo } from '../../../logic/api/todo/put';
-import { todoDetailData } from '../../../logic/api/todo/get';
+import { useState, useRef } from 'react';
+import { useDeleteItem } from '../../../hook/api/todo/useDelete';
+import { usePutItem } from '../../../hook/api/todo/usePut';
+import { useTodoDetail } from '../../../hook/api/todo/useGet';
+import { modalPropsType } from '../../../utils/types/todo/type';
 import '../../../styles/todo/modal/DetailTodo.scss';
 
-type defailTodo = {
-    clickedTodo: string
-}
-const DetailTodo = ({ clickedTodo }: defailTodo) => {
-    const [detailTodo, setDetailTodo] = useState<TodoType | undefined>();
+const DetailTodo = ({ clickedTodo, modalStateFunc }: modalPropsType) => {
     const [editState, setEditState] = useState<boolean>(false);
     const editTitle = useRef<HTMLInputElement>(null);
     const editContent = useRef<HTMLTextAreaElement>(null);
+    const todoClickedData = useTodoDetail(clickedTodo);
+    const todoDelete = useDeleteItem(clickedTodo);
+    const todoPut = usePutItem();
 
-    useEffect(() => {
-        (async () => {
-            const todoData = await todoDetailData(clickedTodo);
-            setDetailTodo(todoData);
-        })();
-    }, [editState]);
-
-    const todoEdit = (id: string, title?: string, content?: string) => {
+    const deleteTodoItem = () => {
+        todoDelete.mutate();
+        modalStateFunc('close');
+    }
+    const putTodoItem = () => {
         if(editState === false){
             setEditState(true);
         } else {
-            if(title !== undefined && content !== undefined){
-                updateTodo(id, title, content);
+            if(editTitle !== undefined && editContent !== undefined){
+                todoPut.mutate({ id: todoClickedData!.id, title: editTitle.current!.value, content: editContent.current!.value });
                 setEditState(false);
+                alert('변경되었습니다.');
+                return;
             }
         }
-    }
-    const deleteTodoItem = (id: string) => {
-        deleteTodo(id);
     }
 
     return (
         <div className="detail_todo_contain">
             <div className="inner">
                 {
-                    detailTodo !== undefined && 
+                    todoClickedData !== undefined && 
                     <div className="todo_detail">
                         {
                             editState === true
@@ -49,12 +44,12 @@ const DetailTodo = ({ clickedTodo }: defailTodo) => {
                                 <input 
                                     ref={editTitle}
                                     className="edit_title"
-                                    placeholder={detailTodo.title}/>
+                                    placeholder={todoClickedData.title}/>
                             </>
-                            : <h2 className="todo_detail_title">{detailTodo.title}</h2>
+                            : <h2 className="todo_detail_title">{todoClickedData.title}</h2>
                         }
                         {
-                            editState === false ? <p className="todo_detail_date">{detailTodo.createdAt.substr(0, 10)}</p>
+                            editState === false ? <p className="todo_detail_date">{todoClickedData.createdAt.substr(0, 10)}</p>
                             : null
                         }
                         {
@@ -66,18 +61,18 @@ const DetailTodo = ({ clickedTodo }: defailTodo) => {
                                 <textarea
                                     ref={editContent}
                                     className="edit_content"
-                                    placeholder={detailTodo.content}/>
+                                    placeholder={todoClickedData.content}/>
                             </>
-                            : <p className="todo_detail_content">{detailTodo.content}</p>
+                            : <p className="todo_detail_content">{todoClickedData.content}</p>
                         }
                     </div>
                 }
                 <div className="detail_buttons">
                     <button className="edit_button btn"
-                    onClick={() => {todoEdit(detailTodo!.id, editTitle.current?.value, editContent.current?.value)}}>
+                    onClick={() => {putTodoItem()}}>
                         {editState === false ? '수정' : '변경'}
                     </button>
-                    <button className="delete_button btn" onClick={() => {deleteTodoItem(detailTodo!.id)}}>
+                    <button className="delete_button btn" onClick={() => { deleteTodoItem()}}>
                         삭제
                     </button>
                 </div>

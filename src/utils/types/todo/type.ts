@@ -8,6 +8,6 @@ export type TodoType = {
 
 export type modalPropsType = {
     modalStateFunc(type: string): void
-    modalState: string
+    modalState?: string
     clickedTodo: string
 }

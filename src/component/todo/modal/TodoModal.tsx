@@ -11,10 +11,10 @@ const TodoModal = ({ modalStateFunc, modalState, clickedTodo }: modalPropsType) 
             <div className="todo_modal_inner">
                 <p className="close" onClick={() => { modalStateFunc('close') }}>X</p>
                 {
-                    modalState === 'create' && <CreateTodo />
+                    modalState === 'create' && <CreateTodo modalStateFunc={ modalStateFunc } />
                 }
                 {
-                    modalState === 'detail' && <DetailTodo clickedTodo={clickedTodo}/>
+                    modalState === 'detail' && <DetailTodo clickedTodo={clickedTodo} modalStateFunc ={ modalStateFunc } />
                 }
             </div>
         </div>

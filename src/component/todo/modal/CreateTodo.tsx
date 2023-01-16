@@ -1,10 +1,19 @@
 import { useRef } from 'react';
-import { createPost } from '../../../logic/api/todo/post';
+import { useCreateTodo } from '../../../hook/api/todo/usePost';
 import '../../../styles/todo/modal/CreateTodo.scss';
+import { modalStateFuncType } from '../../../utils/types/todo/interface';
 
-const CreateTodo = () => {
+const CreateTodo = ({ modalStateFunc }: modalStateFuncType) => {
     const title = useRef<HTMLInputElement>(null);
     const content = useRef<HTMLTextAreaElement>(null);
+
+    const createPost = useCreateTodo();
+
+    const createPostHandler = () => {
+        createPost.mutate({ title: title.current!.value, content: content.current!.value })
+        alert('게시글이 생성되었습니다!');
+        modalStateFunc('clise');
+    }
     return (
         <div className="create_todo_modal_contain">
             <div className="todo_modal_inner">
@@ -27,7 +36,7 @@ const CreateTodo = () => {
                     />
                 </div>
             </div>
-            <button className="create_todo_button" onClick={() => { createPost(title.current!.value, content.current!.value) } }>생성</button>
+            <button className="create_todo_button" onClick={() => { createPostHandler() } }>생성</button>            
         </div>
     );
 };

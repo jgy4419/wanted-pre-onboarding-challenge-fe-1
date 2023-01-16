@@ -12,8 +12,8 @@ function emailCheck(email: string): boolean {
         return false;
     }
 }
-function passwordCheck(pw1: string, pw2: string): boolean {
-    if (pw1 && pw1.length >= 8 && pw1 === pw2) {
+function passwordCheck(passwordRef: string, passwordConfirmedRef: string): boolean {
+    if (passwordRef && passwordRef.length >= 8 && passwordRef === passwordConfirmedRef) {
         return true;
     }
     else {
