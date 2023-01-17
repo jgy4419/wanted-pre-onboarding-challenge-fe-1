@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import TodoModal from './modal/TodoModal';
-import '../../styles/todo/TodoList.scss';
+// import '../../styles/todo/TodoList.scss';
 import { TodoType } from '../../utils/types/todo/type';
-import { useGetTodo } from '../../hook/api/todo/useGet';
+import { useGetTodo } from '../../hook/api/todo/useTodoGet';
+import * as List from '../../styles/styledComponents/todo/styledTodoList';
+
 const TodoList = () => {
     const getTodo = useGetTodo();
 
@@ -25,8 +27,8 @@ const TodoList = () => {
 
     return (
         <>
-            <div className="todo_list_contain">
-                <div className="todo_list_inner">
+            <List.TodoListContain>
+                <List.TodoListInner>
                     <ul className="todo_lists">
                         {
                             Array.isArray(getTodo) && getTodo.map((item: TodoType) => {
@@ -42,15 +44,15 @@ const TodoList = () => {
                             })
                         }
                     </ul>
-                    <button className="add_todo_button" onClick={ () => {modalStateFunc('create')}}>+</button>
-                </div>
-            </div>
-            <div className="todo_modal">
+                    <List.AddTodoButton onClick={ () => {modalStateFunc('create')}}>+</List.AddTodoButton>
+                </List.TodoListInner>
+            </List.TodoListContain>
+            <List.TodoModal>
                 {
                     modalState === 'create' || modalState === 'detail' ? <TodoModal {...props} clickedTodo={ clickedTodo } />
                     : null
                 }
-            </div>
+            </List.TodoModal>
         </>
     );
 };

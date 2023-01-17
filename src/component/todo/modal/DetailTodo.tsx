@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
-import { useDeleteItem } from '../../../hook/api/todo/useDelete';
-import { usePutItem } from '../../../hook/api/todo/usePut';
-import { useTodoDetail } from '../../../hook/api/todo/useGet';
+import { useDeleteItem } from '../../../hook/api/todo/useTodoDelete';
+import { usePutItem } from '../../../hook/api/todo/useTodoPut';
+import { useTodoDetail } from '../../../hook/api/todo/useTodoGet';
 import { modalPropsType } from '../../../utils/types/todo/type';
 import '../../../styles/todo/modal/DetailTodo.scss';
 

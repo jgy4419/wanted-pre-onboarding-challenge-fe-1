@@ -38,10 +38,3 @@ export const TodoBlurButton = styled.button`
         color: #fff;
     }
 `
-
-// export const Todo_Blur_Text_Hover = styled.h2`
-//     &:hover{
-//         font-size: 30px;
-//         color: #333;
-//     }
-// `

@@ -1,7 +1,6 @@
-import '../../styles/todo/TodoMain.scss';
 import { Link } from 'react-router-dom';
 import { blurTitle, blurContent } from '../../utils/constants';
-import * as Main from '../../styles/styledComponnts/todo/styleTodoMain';
+import * as Main from '../../styles/styledComponents/todo/styleTodoMain';
 
 const TodoMain = () => {
     return (
@@ -12,7 +11,6 @@ const TodoMain = () => {
                         <Link to='/auth'>
                             <Main.TodoBlurButton>로그인 하러 가기</Main.TodoBlurButton>
                         </Link>
-                        
                     </Main.BeforeLoginText>
             </div>
             <div className="todo_lists"

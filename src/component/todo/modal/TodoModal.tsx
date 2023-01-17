@@ -1,23 +1,22 @@
 import CreateTodo from './CreateTodo';
 import DetailTodo from './DetailTodo';
-import '../../../styles/todo/modal/TodoModal.scss';
 import { modalPropsType } from '../../../utils/types/todo/type';
-
+import * as Modal from '../../../styles/styledComponents/todo/modal/styledTodoModal';
 
 const TodoModal = ({ modalStateFunc, modalState, clickedTodo }: modalPropsType) => {
     return (
-        <div className="todo_modals_contain">
-            <div className="dark_back_color" />
-            <div className="todo_modal_inner">
-                <p className="close" onClick={() => { modalStateFunc('close') }}>X</p>
+        <Modal.TodoModalsContain>
+            <Modal.DarkBackColor />
+            <Modal.TodoModalInner>
+                <Modal.Close onClick={() => { modalStateFunc('close') }}>X</Modal.Close>
                 {
                     modalState === 'create' && <CreateTodo modalStateFunc={ modalStateFunc } />
                 }
                 {
                     modalState === 'detail' && <DetailTodo clickedTodo={clickedTodo} modalStateFunc ={ modalStateFunc } />
                 }
-            </div>
-        </div>
+            </Modal.TodoModalInner>
+        </Modal.TodoModalsContain>
     );
 };
 

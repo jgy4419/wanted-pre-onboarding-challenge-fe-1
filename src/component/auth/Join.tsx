@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { emailCheck, passwordCheck } from '../../logic/signUp';
-import { createUser } from '../../logic/api/auth/post';
+import { useAuthPost } from '../../hook/api/auth/useAuthPost';
 import '../../styles/auth/Join.scss';
 
 const Join = () => {
@@ -11,6 +11,7 @@ const Join = () => {
     const email = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
     const passwordConfirmedRef = useRef<HTMLInputElement>(null);
+    const authPost = useAuthPost();
 
     const check = (): boolean => {
         if(emailCheck(email.current!.value) && passwordCheck(passwordRef.current!.value, passwordConfirmedRef.current!.value)){
@@ -20,9 +21,10 @@ const Join = () => {
             return false;
         }
     }
-    function join() {
+    function joinHandler() {
         if (!check()) return     
-        createUser(email.current!.value, passwordRef.current!.value);
+        authPost.mutate({email: email.current!.value, password: passwordRef.current!.value})
+        alert('회원가입이 완료되었습니다!');
         navigate('/');
     }
 
@@ -43,7 +45,7 @@ const Join = () => {
                                     backgroundColor: 'lightGrey'
                                 }
                         }
-                        onClick={() => { join() } } disabled={ authState ? false : true}>회원가입</button>
+                        onClick={() => { joinHandler() } } disabled={ authState ? false : true}>회원가입</button>
                 </div>
             </div>
         </div>

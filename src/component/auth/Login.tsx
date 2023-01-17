@@ -1,13 +1,14 @@
-import React, { useRef, KeyboardEvent } from 'react';
-import { loginAuth } from '../../logic/api/auth/post';
+import { useRef, KeyboardEvent } from 'react';
+import { useLoginAuth } from '../../hook/api/auth/useAuthPost';
 import '../../styles/auth/Login.scss';
 
 const Login = () => {
     const email = useRef<HTMLInputElement>(null);
     const password = useRef<HTMLInputElement>(null);
+    const loginAuth = useLoginAuth();
     const loginState = (enter: KeyboardEvent): void => {
         if (enter.key === 'Enter') {
-            loginAuth(email.current!.value, password.current!.value)
+            loginAuth.mutate({ email: email.current!.value, password: password.current!.value })
         }        
     }
     return (
@@ -20,7 +21,7 @@ const Login = () => {
                 <input className="pw" ref={password} type="password" placeholder='pw'
                     onKeyDown={(keyBoard) => { loginState(keyBoard) }}
                 />
-                <button className="login_btn" onClick={() => { loginAuth(email.current!.value, password.current!.value) } }>로그인</button>
+                <button className="login_btn" onClick={() => { loginAuth.mutate({ email: email.current!.value, password: password.current!.value }) } }>로그인</button>
             </div>
         </div>
     );
