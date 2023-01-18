@@ -1,11 +1,9 @@
 import { useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { emailCheck, passwordCheck } from '../../logic/signUp';
 import { useAuthPost } from '../../hook/api/auth/useAuthPost';
 import '../../styles/auth/Join.scss';
 
 const Join = () => {
-    const navigate = useNavigate();
     // 변수명.. 잘 만들자..
     const [authState, setAuthState] = useState(false);
     const email = useRef<HTMLInputElement>(null);
@@ -24,8 +22,6 @@ const Join = () => {
     function joinHandler() {
         if (!check()) return     
         authPost.mutate({email: email.current!.value, password: passwordRef.current!.value})
-        alert('회원가입이 완료되었습니다!');
-        navigate('/');
     }
 
     return (

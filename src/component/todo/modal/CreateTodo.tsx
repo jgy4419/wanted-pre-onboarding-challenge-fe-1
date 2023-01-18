@@ -11,7 +11,6 @@ const CreateTodo = ({ modalStateFunc }: modalStateFuncType) => {
 
     const createPostHandler = () => {
         createPost.mutate({ title: title.current!.value, content: content.current!.value })
-        alert('게시글이 생성되었습니다!');
         modalStateFunc('close');
     }
     return (

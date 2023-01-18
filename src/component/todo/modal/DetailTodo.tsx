@@ -24,7 +24,6 @@ const DetailTodo = ({ clickedTodo, modalStateFunc }: modalPropsType) => {
             if(editTitle !== undefined && editContent !== undefined){
                 todoPut.mutate({ id: todoClickedData!.id, title: editTitle.current!.value, content: editContent.current!.value });
                 setEditState(false);
-                alert('변경되었습니다.');
                 return;
             }
         }

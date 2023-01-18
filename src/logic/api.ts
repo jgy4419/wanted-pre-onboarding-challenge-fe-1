@@ -1,25 +1,21 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosHeaders } from 'axios';
+import axios from 'axios';
 
-const baseURL = process.env.REACT_APP_API_URL;
-
-const config: AxiosRequestConfig = {
-    baseURL,
+const api = axios.create({
+    baseURL: process.env.REACT_APP_API_URL,
     headers: {
-        ContentType: 'application/json'
+        'Content-type': 'application/json'
     }
-};
+});
 
-export const api: AxiosInstance = axios.create(config);
+api.interceptors.request.use(config => {
+    const token = localStorage.getItem('token');
+    if(!token) return config;
 
-api.interceptors.request.use(
-    function (config) {
-        // const accessToken = localStorage.getItem('token');
-        // if (config.headers && accessToken) {
-        //     config.headers["Authorization"] = "login " + accessToken;
-        // }
-        return config;
-    },
-    function (error) {
-        return Promise.reject(error);
-    }
-);
+    config.headers = {
+        'Content-type': 'application/json',
+        Authorization: token
+    };
+    return config;
+});
+
+export default api;

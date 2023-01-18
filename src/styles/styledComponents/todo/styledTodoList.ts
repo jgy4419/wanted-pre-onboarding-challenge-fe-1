@@ -27,7 +27,7 @@ export const AddTodoButton = styled.button`
     transition: .3s;
     cursor: pointer;
     background-color: rgb(236, 236, 201);
-    &:over{
+    &:hover{
         background-color: rgb(200, 200, 162);
     }
 `
