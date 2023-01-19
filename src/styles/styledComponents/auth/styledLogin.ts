@@ -23,7 +23,7 @@ export const InputContain = styled.div`
     flex-direction: column;
 `;
 
-export const authInput = styled.input`
+export const AuthInput = styled.input`
     ${inputBasicStyle}    
     transition: .3s;
     padding: 20px;

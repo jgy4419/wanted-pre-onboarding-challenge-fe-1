@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { emailCheck, passwordCheck } from '../../logic/signUp';
 import { useAuthPost } from '../../hook/api/auth/useAuthPost';
-import '../../styles/auth/Join.scss';
+import * as JoinStyle from '../../styles/styledComponents/auth/styledJoin';
 
 const Join = () => {
     // 변수명.. 잘 만들자..
@@ -25,15 +25,15 @@ const Join = () => {
     }
 
     return (
-        <div className="join_contain">
-            <h1 className="text">회원가입</h1>
-            <div className="input_contain">
-                <input className="id" type="email" ref={email} placeholder="이메일을 입력해주세요." />
-                <input className="pw" type="password" ref={passwordRef} placeholder='비밀번호는 최소 8자 이상 입력해주세요.'/>
-                <input className="pw" type="password" ref={passwordConfirmedRef} placeholder='다시 한 번 입력해주세요.' />
-                <div className="btn_contain">
-                    <button className="auth_btn auth" onClick={ () => {check() && alert('유효성 검사가 완료되었습니다.') }}>유효성 검사</button>
-                    <button className="auth_btn join"
+        <JoinStyle.JoinContain>
+            <JoinStyle.Text>회원가입</JoinStyle.Text>
+            <JoinStyle.InputContain>
+                <JoinStyle.AuthInput type="email" ref={email} placeholder="이메일을 입력해주세요." />
+                <JoinStyle.AuthInput type="password" ref={passwordRef} placeholder='비밀번호는 최소 8자 이상 입력해주세요.'/>
+                <JoinStyle.AuthInput type="password" ref={passwordConfirmedRef} placeholder='다시 한 번 입력해주세요.' />
+                <JoinStyle.BtnContain>
+                    <JoinStyle.AuthButton onClick={ () => {check() && alert('유효성 검사가 완료되었습니다.') }}>유효성 검사</JoinStyle.AuthButton>
+                    <JoinStyle.JoinButton
                         style={
                             authState ? { cursor: "pointer" } :
                                 {
@@ -41,10 +41,10 @@ const Join = () => {
                                     backgroundColor: 'lightGrey'
                                 }
                         }
-                        onClick={() => { joinHandler() } } disabled={ authState ? false : true}>회원가입</button>
-                </div>
-            </div>
-        </div>
+                        onClick={() => { joinHandler() } } disabled={ authState ? false : true}>회원가입</JoinStyle.JoinButton>
+                </JoinStyle.BtnContain>
+            </JoinStyle.InputContain>
+        </JoinStyle.JoinContain>
     );
 };
 

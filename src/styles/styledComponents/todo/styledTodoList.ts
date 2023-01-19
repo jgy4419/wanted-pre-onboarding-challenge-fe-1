@@ -37,3 +37,7 @@ export const TodoModal = styled.div`
     top: 0;
     left: 0;
 `
+
+export const NotTodo = styled.h1`
+    color: #333;
+`

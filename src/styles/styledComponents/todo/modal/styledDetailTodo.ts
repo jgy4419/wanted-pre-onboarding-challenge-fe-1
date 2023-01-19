@@ -1,7 +1,7 @@
 import styled from 'styled-components';
+import { button, edit } from '../../overlapStyle';
 
-// 여기부터 하기
-export const DetailTodoContent = styled.div`
+export const DetailTodoContain = styled.div`
     position: relative;
     width: 100%;
     height: 100%;
@@ -28,6 +28,7 @@ export const TodoDetail = styled.div`
 export const TodoDetailTitle = styled.h2`
     font-size: 50px;
     color: #333;
+    word-break: break-all; // 글자 넘침 방지
 `
 
 export const TodoDetailDate = styled.p`
@@ -47,6 +48,10 @@ export const EditTitleLable = styled.label`
     font-weight: 700;
 `
 
+export const EditContentContain = styled.div`
+    margin-top: 30px;
+`
+
 export const EditContentLable = styled.label`
     font-size: 25px;
     font-weight: 700;
@@ -55,17 +60,16 @@ export const EditContentLable = styled.label`
     }
 `
 
-export const EditTitle = styled.p`
-    margin-left: 30px;  
-    padding: 10px;
-    background-color: rgb(242, 239, 239);
-    box-sizing: border-box;
-    border-radius: 10px;
-    box-shadow: 2px 3px 3px 2px rgb(243, 239, 239);
-    border: 0;
-    font-weight: 600;
-    width: 80%;
-    height: 40px;
+export const EditContentInput = styled.textarea`
+    ${edit}
+    height: 300px;
+    margin-top: 30px;
+`
+
+export const EditTitle = styled.input`
+    ${edit}
+    height: 50px;
+    margin-top: 30px;
     @media (max-width: 900px) {
         font-size: 20px;
     }
@@ -93,23 +97,14 @@ export const DetailButtons = styled.div`
     margin-top: 10px;
 `
 
-export const Button = styled.button`
-    margin-top: 10px;
-    border: 0;
-    border-radius: 5px;
-    width: 60px;
-    height: 40px;
-    font-size: 14px;
-    font-weight: 700;
-    cursor: pointer;
-`
-
 export const EditButton = styled.button`
+    ${button}
     background-color: rgb(214, 212, 212);
     color: #333;
 `
 
 export const DeleteButton = styled.button`
+    ${button}
     background-color: rgb(247, 96, 96);
     color: #fff;
 `

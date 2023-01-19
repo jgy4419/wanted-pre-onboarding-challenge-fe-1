@@ -1,6 +1,6 @@
 import { useRef, KeyboardEvent } from 'react';
 import { useLoginAuth } from '../../hook/api/auth/useAuthPost';
-import '../../styles/auth/Login.scss';
+import * as LoginStyle from '../../styles/styledComponents/auth/styledLogin';
 
 const Login = () => {
     const email = useRef<HTMLInputElement>(null);
@@ -12,18 +12,18 @@ const Login = () => {
         }        
     }
     return (
-        <div className="login_contain">
-            <h1 className="text">로그인</h1>
-            <div className="input_contain">
-                <input className="id" ref={email} type="email" placeholder="id"
+        <LoginStyle.LoginContain>
+            <LoginStyle.Text>로그인</LoginStyle.Text>
+            <LoginStyle.InputContain>
+                <LoginStyle.AuthInput ref={email} type="email" placeholder="id"
                     onKeyDown={(keyBoard) => { loginState(keyBoard) }}
                 />
-                <input className="pw" ref={password} type="password" placeholder='pw'
+                <LoginStyle.AuthInput ref={password} type="password" placeholder='pw'
                     onKeyDown={(keyBoard) => { loginState(keyBoard) }}
                 />
-                <button className="login_btn" onClick={() => { loginAuth.mutate({ email: email.current!.value, password: password.current!.value }) } }>로그인</button>
-            </div>
-        </div>
+                <LoginStyle.LoginBtn onClick={() => { loginAuth.mutate({ email: email.current!.value, password: password.current!.value }) } }>로그인</LoginStyle.LoginBtn>
+            </LoginStyle.InputContain>
+        </LoginStyle.LoginContain>
     );
 };
 

@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import TodoModal from './modal/TodoModal';
-// import '../../styles/todo/TodoList.scss';
 import { TodoType } from '../../utils/types/todo/type';
 import { useGetTodo } from '../../hook/api/todo/useTodoGet';
 import * as List from '../../styles/styledComponents/todo/styledTodoList';
@@ -31,7 +30,7 @@ const TodoList = () => {
                 <List.TodoListInner>
                     <ul className="todo_lists">
                         {
-                            Array.isArray(getTodo) && getTodo.map((item: TodoType) => {
+                            Array.isArray(getTodo) && getTodo.length > 0 ? getTodo.map((item: TodoType) => {
                                 return (
                                     <li key={item.id} className="todo_list"
                                         onClick={() => { modalData(item.id) }}>
@@ -42,6 +41,7 @@ const TodoList = () => {
                                     </li>
                                 )
                             })
+                                : <List.NotTodo>투두가 없습니다..</List.NotTodo>
                         }
                     </ul>
                     <List.AddTodoButton onClick={ () => {modalStateFunc('create')}}>+</List.AddTodoButton>

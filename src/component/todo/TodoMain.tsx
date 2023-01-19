@@ -18,7 +18,6 @@ const TodoMain = () => {
                 filter: "blur(4px)",
                 pointerEvents: "none"
             }}>
-                {/* 스타일 수정하기 */}
                 {
                     blurTitle.map((item, index) => {
                         return (

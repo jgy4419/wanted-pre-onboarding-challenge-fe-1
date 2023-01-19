@@ -1,4 +1,15 @@
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
+
+export const GlobalStyle = createGlobalStyle`
+    *{
+        ul, li, ol {
+            list-style: none;
+        }
+        a { 
+            color: red;
+        }
+    }
+`
 
 export const HeaderContain = styled.div`
     position: relative;
@@ -21,6 +32,7 @@ export const Logo = styled.p`
     font-size: 24px;
     font-weight: 700;
     cursor: pointer;
+    color: #333;
 `
 
 export const MenuList = styled.ul`

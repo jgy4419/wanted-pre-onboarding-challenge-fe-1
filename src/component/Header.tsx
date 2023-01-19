@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import useTokenCheck from '../hook/login/useTokenCheck';
-import '../styles/Header.scss';
+import * as Head from '../styles/styledComponents/styledHeader';
 
 const Header = () => {
     const { tokenState } = useTokenCheck();
@@ -23,25 +23,26 @@ const Header = () => {
     }
 
     return (
-        <header className="header_contain">
-            <div className="header_inner">
-                <Link to="/"><p className="logo">wanted</p></Link>
-                <ul className="menu_list">
+        <Head.HeaderContain>
+            <Head.GlobalStyle/>
+            <Head.HeaderInner>
+                <Link to="/"><Head.Logo>wanted</Head.Logo></Link>
+                <Head.MenuList>
                     {
                         menuList.map((item, index) => {
                             return (
                                 <>
                                     <Link to={url[index]} key={index}>
-                                        <li className="menu_item">{item}</li>
+                                        <Head.MenuItem>{item}</Head.MenuItem>
                                     </Link>
                                 </>
                             )
                         })
                     }
-                    {tokenState && <li className="menu_item logout" onClick={ () => {logout()}}>로그아웃</li>}
-                </ul>
-            </div>
-        </header>
+                    {tokenState && <Head.MenuItem onClick={ () => {logout()}}>로그아웃</Head.MenuItem>}
+                </Head.MenuList>
+            </Head.HeaderInner>
+        </Head.HeaderContain>
     );
 };
 

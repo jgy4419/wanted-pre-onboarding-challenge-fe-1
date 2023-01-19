@@ -3,7 +3,7 @@ import { useDeleteItem } from '../../../hook/api/todo/useTodoDelete';
 import { usePutItem } from '../../../hook/api/todo/useTodoPut';
 import { useTodoDetail } from '../../../hook/api/todo/useTodoGet';
 import { modalPropsType } from '../../../utils/types/todo/type';
-import '../../../styles/todo/modal/DetailTodo.scss';
+import * as Detail from '../../../styles/styledComponents/todo/modal/styledDetailTodo';
 
 const DetailTodo = ({ clickedTodo, modalStateFunc }: modalPropsType) => {
     const [editState, setEditState] = useState<boolean>(false);
@@ -30,53 +30,54 @@ const DetailTodo = ({ clickedTodo, modalStateFunc }: modalPropsType) => {
     }
 
     return (
-        <div className="detail_todo_contain">
-            <div className="inner">
+        <Detail.DetailTodoContain>
+            <Detail.DetailInner>
                 {
                     todoClickedData !== undefined && 
-                    <div className="todo_detail">
+                    <Detail.TodoDetail>
                         {
                             editState === true
                             ? 
                             <>
-                                <label className="edit_title_label">제목</label>
-                                <input 
+                                <Detail.EditTitleLable>제목</Detail.EditTitleLable>
+                                <Detail.EditTitle 
                                     ref={editTitle}
                                     className="edit_title"
                                     placeholder={todoClickedData.title}/>
                             </>
-                            : <h2 className="todo_detail_title">{todoClickedData.title}</h2>
+                            : <Detail.TodoDetailTitle>{todoClickedData.title}</Detail.TodoDetailTitle>
                         }
                         {
-                            editState === false ? <p className="todo_detail_date">{todoClickedData.createdAt.substr(0, 10)}</p>
+                            editState === false ? <Detail.TodoDetailDate>{todoClickedData.createdAt.substr(0, 10)}</Detail.TodoDetailDate>
                             : null
                         }
                         {
                             editState === true
                             ? 
                             <>
-                                <br/>
-                                <p className="edit_content_label">내용</p>
-                                <textarea
-                                    ref={editContent}
-                                    className="edit_content"
-                                    placeholder={todoClickedData.content}/>
+                                <br />
+                                <Detail.EditContentContain>
+                                <Detail.EditContentLable>내용</Detail.EditContentLable>
+                                    <Detail.EditContentInput
+                                        ref={editContent}
+                                        placeholder={todoClickedData.content}/>
+                                </Detail.EditContentContain>
                             </>
-                            : <p className="todo_detail_content">{todoClickedData.content}</p>
+                            : <Detail.TodoDetailContent>{todoClickedData.content}</Detail.TodoDetailContent>
                         }
-                    </div>
+                    </Detail.TodoDetail>
                 }
-                <div className="detail_buttons">
-                    <button className="edit_button btn"
+                <Detail.DetailButtons>
+                    <Detail.EditButton    
                     onClick={() => {putTodoItem()}}>
                         {editState === false ? '수정' : '변경'}
-                    </button>
-                    <button className="delete_button btn" onClick={() => { deleteTodoItem()}}>
+                    </Detail.EditButton>
+                    <Detail.DeleteButton onClick={() => { deleteTodoItem()}}>
                         삭제
-                    </button>
-                </div>
-            </div>
-        </div>
+                    </Detail.DeleteButton>
+                </Detail.DetailButtons>
+            </Detail.DetailInner>
+        </Detail.DetailTodoContain>
     );
 };
 

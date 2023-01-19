@@ -47,6 +47,7 @@ export const AuthButton = styled.button`
 
 export const JoinButton = styled.button`
     ${inputBasicStyle};
+    width: 45%;
     background-color: #A6BB8D;
     color: #fff;
     &:hover {

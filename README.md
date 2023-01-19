@@ -8,15 +8,92 @@
 2. npm install
 3. npm start (실행 전 node 버전 확인)
 
+# 전체 영상
+<video controls width="100%" autoplay muted>
+    <source src="https://user-images.githubusercontent.com/76980526/213387756-53ea4a5a-63b4-467e-9389-4ad04f83836e.mov"
+	type="video/mp4"/>
+</video>
+
+## 파일 구조
+
+```
+── src
+│   ├── component
+│   │   ├── Header.tsx
+│   │   ├── Progress.tsx
+│   │   ├── auth
+│   │   │   ├── AuthChoice.tsx
+│   │   │   ├── Join.tsx
+│   │   │   └── Login.tsx
+│   │   └── todo
+│   │       ├── TodoList.tsx
+│   │       ├── TodoMain.tsx
+│   │       └── modal
+│   │           ├── CreateTodo.tsx
+│   │           ├── DetailTodo.tsx
+│   │           └── TodoModal.tsx
+│   ├── hook
+│   │   ├── api
+│   │   │   ├── auth
+│   │   │   │   └── useAuthPost.tsx
+│   │   │   └── todo
+│   │   │       ├── useTodoDelete.tsx
+│   │   │       ├── useTodoGet.tsx
+│   │   │       ├── useTodoPost.tsx
+│   │   │       └── useTodoPut.tsx
+│   │   └── login
+│   │       ├── useLoginState.tsx
+│   │       └── useTokenCheck.tsx
+│   ├── index.tsx
+│   ├── logic
+│   │   ├── api.ts
+│   │   ├── modalState.ts
+│   │   └── signUp.ts
+│   ├── logo.svg
+│   ├── pages
+│   │   ├── 404.tsx
+│   │   ├── Auth.tsx
+│   │   └── Home.tsx
+│   ├── styles
+│   │   ├── auth
+│   │   └── styledComponents
+| 	|		├── global.ts
+│   │       ├── auth
+│   │       │   ├── styledAuthChoice.ts
+│   │       │   ├── styledJoin.ts
+│   │       │   └── styledLogin.ts
+│   │       ├── overlapStyle.ts
+│   │       ├── styled404.ts
+│   │       ├── styledHeader.ts
+│   │       └── todo
+│   │           ├── modal
+│   │           │   ├── styledCreateTodo.ts
+│   │           │   ├── styledDetailTodo.ts
+│   │           │   └── styledTodoModal.ts
+│   │           ├── styleTodoMain.ts
+│   │           └── styledTodoList.ts
+│   └── utils
+│       ├── constants.ts
+│       └── types
+│           ├── auth
+│           │   └── interface.ts
+│           └── todo
+│               ├── interface.ts
+│               └── type.ts
+
+```
+
 # 로그인 하기 전 메인화면
 <img width="1433" alt="image" src="https://user-images.githubusercontent.com/76980526/210545361-90233bf4-eade-4554-b5e8-c119293ca635.png">
 
 # Assignment 1 - Login / SignUp
 ## /auth 경로에 로그인 / 회원가입 기능을 개발
+
 - 이메일 조건 : 최소 `@`, `.` 포함
 - 비밀번호 조건 : 8자 이상 입력
 - 이메일과 비밀번호 모두 입력되어 있고, 조건을 만족해야 제출 버튼이 활성화 되도록 해주기.
 <img width="1440" alt="image" src="https://user-images.githubusercontent.com/76980526/210497174-af443aa5-8d9f-4337-b545-aeb53f59ae10.png">
+
 
 
 ## 로그인 API를 호출하고, 올바른 응답을 받았을 때 루트 경로로 이동.
@@ -62,4 +139,3 @@
 
 - 삭제 후 게시글 리스트
 <img width="1308" alt="image" src="https://user-images.githubusercontent.com/76980526/210545043-e0406302-5692-44d5-aadb-b5e2e169fe60.png">
-

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './global.scss';
+import GlobalStyle from './styles/styledComponents/global';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { QueryClient, QueryClientProvider } from 'react-query';
@@ -16,6 +16,7 @@ root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={ true }/>
+      <GlobalStyle/>
       <App />
     </QueryClientProvider>
   </React.StrictMode>

@@ -1,21 +1,21 @@
 import React from 'react';
 import Login from './Login';
 import Join from './Join';
-import '../../styles/auth/AuthChoice.scss';
+import * as Auth from '../../styles/styledComponents/auth/styledAuthChoice';
 
 const AuthChoice = () => {
     return (
         <>
-            <div className="choice_contain">
-                <div className="inner">
-                    <div className="choice login">
+            <Auth.ChoiceContain>
+                <Auth.ChoiceInner>
+                    <Auth.ChoiceDiv>
                         <Login/>
-                    </div>
-                    <div className="choice join">
+                    </Auth.ChoiceDiv>
+                    <Auth.ChoiceDiv>
                         <Join/>
-                    </div>
-                </div>
-            </div>
+                    </Auth.ChoiceDiv>
+                </Auth.ChoiceInner>
+            </Auth.ChoiceContain>
         </>
     );
 };

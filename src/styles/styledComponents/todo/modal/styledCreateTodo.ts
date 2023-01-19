@@ -32,7 +32,7 @@ export const CreateTodoLabel = styled.label`
 `
 
 export const CreateTodoInput = styled.input`
-    width: 50%;
+    width: 70%;
     height: 40px;
     padding: 10px;
     box-sizing: border-box;
@@ -42,8 +42,8 @@ export const CreateTodoInput = styled.input`
     box-shadow: 2px 3px 3px 2px rgb(243, 239, 239);
 `
 export const CreateTodoTextArea = styled.textarea`
-    width: 50%;
-    height: 40px;
+    width: 70%;
+    height: 300px;
     padding: 10px;
     box-sizing: border-box;
     border-radius: 5px;
