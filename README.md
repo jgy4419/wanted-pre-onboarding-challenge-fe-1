@@ -9,10 +9,7 @@
 3. npm start (실행 전 node 버전 확인)
 
 # 전체 영상
-<video controls width="100%" autoplay muted>
-    <source src="https://user-images.githubusercontent.com/76980526/213387756-53ea4a5a-63b4-467e-9389-4ad04f83836e.mov"
-	type="video/mp4"/>
-</video>
+https://user-images.githubusercontent.com/76980526/213650123-abf65bad-50ba-457e-859e-dad4395bd679.mov
 
 ## 파일 구조
 
