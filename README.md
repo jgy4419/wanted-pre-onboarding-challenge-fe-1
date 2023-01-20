@@ -17,7 +17,10 @@
 ## 파일 구조
 
 ```
-── src
+├── src
+│   ├── App.tsx
+│   ├── AppStyled.ts
+│   ├── Router.tsx
 │   ├── component
 │   │   ├── Header.tsx
 │   │   ├── Progress.tsx
@@ -31,6 +34,7 @@
 │   │       └── modal
 │   │           ├── CreateTodo.tsx
 │   │           ├── DetailTodo.tsx
+│   │           ├── EditTodo.tsx
 │   │           └── TodoModal.tsx
 │   ├── hook
 │   │   ├── api
@@ -45,23 +49,30 @@
 │   │       ├── useLoginState.tsx
 │   │       └── useTokenCheck.tsx
 │   ├── index.tsx
-│   ├── logic
-│   │   ├── api.ts
-│   │   ├── modalState.ts
-│   │   └── signUp.ts
+│   ├── lib
+│   │   ├── auth
+│   │   │   ├── authCheck.ts
+│   │   │   ├── logout.ts
+│   │   │   └── signUp.ts
+│   │   └── common
+│   │       ├── api.ts
+│   │       └── modalState.ts
 │   ├── logo.svg
 │   ├── pages
 │   │   ├── 404.tsx
 │   │   ├── Auth.tsx
 │   │   └── Home.tsx
+│   ├── react-app-env.d.ts
+│   ├── reportWebVitals.ts
+│   ├── setupTests.ts
 │   ├── styles
 │   │   ├── auth
 │   │   └── styledComponents
-| 	|		├── global.ts
 │   │       ├── auth
 │   │       │   ├── styledAuthChoice.ts
 │   │       │   ├── styledJoin.ts
 │   │       │   └── styledLogin.ts
+│   │       ├── global.ts
 │   │       ├── overlapStyle.ts
 │   │       ├── styled404.ts
 │   │       ├── styledHeader.ts
@@ -69,6 +80,7 @@
 │   │           ├── modal
 │   │           │   ├── styledCreateTodo.ts
 │   │           │   ├── styledDetailTodo.ts
+│   │           │   ├── styledEditTodo.ts
 │   │           │   └── styledTodoModal.ts
 │   │           ├── styleTodoMain.ts
 │   │           └── styledTodoList.ts
@@ -80,7 +92,7 @@
 │           └── todo
 │               ├── interface.ts
 │               └── type.ts
-
+└── tsconfig.json
 ```
 
 # 로그인 하기 전 메인화면
