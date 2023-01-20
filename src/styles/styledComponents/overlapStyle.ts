@@ -22,7 +22,7 @@ export const button = css`
 `
 
 export const edit = css`
-    width: 100%;
+    width: 80%;
     margin-left: 30px;  
     padding: 10px;
     background-color: rgb(242, 239, 239);

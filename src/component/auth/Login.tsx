@@ -6,6 +6,7 @@ const Login = () => {
     const email = useRef<HTMLInputElement>(null);
     const password = useRef<HTMLInputElement>(null);
     const loginAuth = useLoginAuth();
+    
     const loginState = (enter: KeyboardEvent): void => {
         if (enter.key === 'Enter') {
             loginAuth.mutate({ email: email.current!.value, password: password.current!.value })

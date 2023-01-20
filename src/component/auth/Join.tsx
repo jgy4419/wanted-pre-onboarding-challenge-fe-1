@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
-import { emailCheck, passwordCheck } from '../../logic/signUp';
 import { useAuthPost } from '../../hook/api/auth/useAuthPost';
 import * as JoinStyle from '../../styles/styledComponents/auth/styledJoin';
+import { authCheck } from '../../lib/auth/authCheck';
 
 const Join = () => {
     // 변수명.. 잘 만들자..
@@ -11,13 +11,14 @@ const Join = () => {
     const passwordConfirmedRef = useRef<HTMLInputElement>(null);
     const authPost = useAuthPost();
 
-    const check = (): boolean => {
-        if(emailCheck(email.current!.value) && passwordCheck(passwordRef.current!.value, passwordConfirmedRef.current!.value)){
-            setAuthState(true)
-            return true;
-        }else {
-            return false;
-        }
+    const check = () => {
+        let authCheckRes = authCheck({
+            email: email.current!.value,
+            password: passwordRef.current!.value,
+            passwordConfirmed: passwordConfirmedRef.current!.value
+        });
+        setAuthState(authCheckRes);
+        return authCheckRes;
     }
     function joinHandler() {
         if (!check()) return     

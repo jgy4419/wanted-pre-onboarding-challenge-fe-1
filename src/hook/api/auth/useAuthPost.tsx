@@ -1,11 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from 'react-query';
-import { authPostType } from '../../../utils/types/auth/interface';
-import api from '../../../logic/api';
+import { IAuthPostType } from '../../../utils/types/auth/interface';
+import api from '../../../lib/common/api';
 
 export function useAuthPost() {
     const navigate = useNavigate();
-    const authPost = useMutation('authPost', async ({email, password}: authPostType) => {
+    const authPost = useMutation('authPost', async ({email, password}: IAuthPostType) => {
         api.post(`${process.env.REACT_APP_API_URL}/users/create`, {
             email,
             password
@@ -20,7 +20,7 @@ export function useAuthPost() {
 }
 
 export function useLoginAuth() {
-    const loginAuth = useMutation('loginAuth', async ({ email, password }: authPostType) => {
+    const loginAuth = useMutation('loginAuth', async ({ email, password }: IAuthPostType) => {
         if (localStorage.getItem('token')) {
             alert('이미 로그인이 되어있습니다!');
             window.location.href = "/"

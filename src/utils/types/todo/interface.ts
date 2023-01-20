@@ -7,3 +7,8 @@ export interface PostTodoType {
 export interface modalStateFuncType {
     modalStateFunc: (type: string) => void
 }
+
+export interface IEditProps {
+    todoClickedData: PostTodoType,
+    editStateFunc(): void
+}

@@ -1,6 +1,6 @@
 import { useMutation } from 'react-query';
 import { PostTodoType } from '../../../utils/types/todo/interface';
-import api from '../../../logic/api';
+import api from '../../../lib/common/api';
 
 export function usePutItem(){
     const putTodoItem = useMutation('putTodoItem', async ({ id, title, content }: PostTodoType) => {

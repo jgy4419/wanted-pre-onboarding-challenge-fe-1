@@ -43,29 +43,6 @@ export const TodoDetailContent = styled.p`
     font-weight: 600;
 `
 
-export const EditTitleLable = styled.label`
-    font-size: 30px;
-    font-weight: 700;
-`
-
-export const EditContentContain = styled.div`
-    margin-top: 30px;
-`
-
-export const EditContentLable = styled.label`
-    font-size: 25px;
-    font-weight: 700;
-    @media (max-width: 900px) {
-        font-size: 20px;
-    }
-`
-
-export const EditContentInput = styled.textarea`
-    ${edit}
-    height: 300px;
-    margin-top: 30px;
-`
-
 export const EditTitle = styled.input`
     ${edit}
     height: 50px;

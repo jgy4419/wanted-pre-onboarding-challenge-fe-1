@@ -1,5 +1,5 @@
 import { useMutation } from 'react-query';
-import api from '../../../logic/api';
+import api from '../../../lib/common/api';
 
 export function useDeleteItem(id: string){
     const deleteTodoItem = useMutation ('deleteItem', async () => {

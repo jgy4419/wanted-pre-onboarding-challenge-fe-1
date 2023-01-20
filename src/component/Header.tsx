@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import useTokenCheck from '../hook/login/useTokenCheck';
 import * as Head from '../styles/styledComponents/styledHeader';
+import { logout } from '../lib/auth/logout';
 
 const Header = () => {
     const { tokenState } = useTokenCheck();
@@ -15,12 +16,6 @@ const Header = () => {
             setUrl(['/']);
         }        
     }, [tokenState]);
-
-    const logout = () => {
-        alert('로그아웃 되었습니다!');
-        localStorage.removeItem('token');
-        window.location.href = "/";
-    }
 
     return (
         <Head.HeaderContain>
