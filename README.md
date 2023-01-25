@@ -1,7 +1,19 @@
 # 원티드 프리온보딩 챌린지 프론트엔드 코스 사전과제
 
-## 실행
+## 목차
 ---
+[실행 / 전체 영상](#실행)
+
+[파일구조](#파일-구조)
+
+[각 페이지 설명](#로그인-하기-전-메인화면)
+
+[후기](#후기)
+
+[리팩토링](https://github.com/users/jgy4419/projects/1)
+---
+
+## 실행
 ### Node 버전 16 이상
 
 1. git clone https://github.com/jgy4419/wanted-pre-onboarding-challenge-fe-1.git
@@ -9,93 +21,87 @@
 3. npm start (실행 전 node 버전 확인)
 
 ## 전체 영상
----
 https://user-images.githubusercontent.com/76980526/213650123-abf65bad-50ba-457e-859e-dad4395bd679.mov
 
 ## 실행배경
----
 > React에 대한 딥한 내용, 관심사에 따른 파일분리, 클린 코드, React-Query 등을 배우면서 기존에 작성했었던 코드 작성 법 등의 퀄리티를 올리고 싶은 생각이 들어서 참여하게 되었습니다.
 
 ## 파일 구조
----
 
 ```
-├── src
-│   ├── App.tsx
-│   ├── AppStyled.ts
-│   ├── Router.tsx
-│   ├── component
-│   │   ├── Header.tsx
-│   │   ├── Progress.tsx
-│   │   ├── auth
-│   │   │   ├── AuthChoice.tsx
-│   │   │   ├── Join.tsx
-│   │   │   └── Login.tsx
-│   │   └── todo
-│   │       ├── TodoList.tsx
-│   │       ├── TodoMain.tsx
-│   │       └── modal
-│   │           ├── CreateTodo.tsx
-│   │           ├── DetailTodo.tsx
-│   │           ├── EditTodo.tsx
-│   │           └── TodoModal.tsx
-│   ├── hook
-│   │   ├── api
-│   │   │   ├── auth
-│   │   │   │   └── useAuthPost.tsx
-│   │   │   └── todo
-│   │   │       ├── useTodoDelete.tsx
-│   │   │       ├── useTodoGet.tsx
-│   │   │       ├── useTodoPost.tsx
-│   │   │       └── useTodoPut.tsx
-│   │   └── login
-│   │       ├── useLoginState.tsx
-│   │       └── useTokenCheck.tsx
-│   ├── index.tsx
-│   ├── lib
-│   │   ├── auth
-│   │   │   ├── authCheck.ts
-│   │   │   ├── logout.ts
-│   │   │   └── signUp.ts
-│   │   └── common
-│   │       ├── api.ts
-│   │       └── modalState.ts
-│   ├── logo.svg
-│   ├── pages
-│   │   ├── 404.tsx
-│   │   ├── Auth.tsx
-│   │   └── Home.tsx
-│   ├── react-app-env.d.ts
-│   ├── reportWebVitals.ts
-│   ├── setupTests.ts
-│   ├── styles
-│   │   ├── auth
-│   │   └── styledComponents
-│   │       ├── auth
-│   │       │   ├── styledAuthChoice.ts
-│   │       │   ├── styledJoin.ts
-│   │       │   └── styledLogin.ts
-│   │       ├── global.ts
-│   │       ├── overlapStyle.ts
-│   │       ├── styled404.ts
-│   │       ├── styledHeader.ts
-│   │       └── todo
-│   │           ├── modal
-│   │           │   ├── styledCreateTodo.ts
-│   │           │   ├── styledDetailTodo.ts
-│   │           │   ├── styledEditTodo.ts
-│   │           │   └── styledTodoModal.ts
-│   │           ├── styleTodoMain.ts
-│   │           └── styledTodoList.ts
-│   └── utils
-│       ├── constants.ts
-│       └── types
-│           ├── auth
-│           │   └── interface.ts
-│           └── todo
-│               ├── interface.ts
-│               └── type.ts
-└── tsconfig.json
+ ┣ 📂src
+ ┃ ┣ 📂component
+ ┃ ┃ ┣ 📂auth
+ ┃ ┃ ┃ ┣ 📂api
+ ┃ ┃ ┃ ┃ ┗ 📜useAuthPost.tsx
+ ┃ ┃ ┃ ┣ 📂hooks
+ ┃ ┃ ┃ ┃ ┣ 📜useAuthCheck.tsx
+ ┃ ┃ ┃ ┃ ┣ 📜useLogout.tsx
+ ┃ ┃ ┃ ┃ ┗ 📜useSignUp.tsx
+ ┃ ┃ ┃ ┣ 📜AuthChoice.tsx
+ ┃ ┃ ┃ ┣ 📜Join.tsx
+ ┃ ┃ ┃ ┗ 📜Login.tsx
+ ┃ ┃ ┣ 📂common
+ ┃ ┃ ┃ ┣ 📜Header.tsx
+ ┃ ┃ ┃ ┗ 📜Progress.tsx
+ ┃ ┃ ┣ 📂todo
+ ┃ ┃ ┃ ┣ 📂api
+ ┃ ┃ ┃ ┃ ┣ 📜useTodoDelete.tsx
+ ┃ ┃ ┃ ┃ ┣ 📜useTodoGet.tsx
+ ┃ ┃ ┃ ┃ ┣ 📜useTodoPost.tsx
+ ┃ ┃ ┃ ┃ ┗ 📜useTodoPut.tsx
+ ┃ ┃ ┃ ┣ 📂hooks
+ ┃ ┃ ┃ ┃ ┗ 📜useTodoGet.tsx
+ ┃ ┃ ┃ ┣ 📂modal
+ ┃ ┃ ┃ ┃ ┣ 📜CreateTodo.tsx
+ ┃ ┃ ┃ ┃ ┣ 📜DetailTodo.tsx
+ ┃ ┃ ┃ ┃ ┣ 📜EditTodo.tsx
+ ┃ ┃ ┃ ┃ ┗ 📜TodoModal.tsx
+ ┃ ┃ ┃ ┣ 📜TodoList.tsx
+ ┃ ┃ ┃ ┗ 📜TodoMain.tsx
+ ┃ ┃ ┗ 📜.DS_Store
+ ┃ ┣ 📂pages
+ ┃ ┃ ┣ 📜404.tsx
+ ┃ ┃ ┣ 📜Auth.tsx
+ ┃ ┃ ┗ 📜Home.tsx
+ ┃ ┣ 📂router
+ ┃ ┃ ┗ 📜Router.tsx
+ ┃ ┣ 📂styles
+ ┃ ┃ ┣ 📂auth
+ ┃ ┃ ┗ 📂styledComponents
+ ┃ ┃ ┃ ┣ 📂auth
+ ┃ ┃ ┃ ┃ ┣ 📜styledAuthChoice.ts
+ ┃ ┃ ┃ ┃ ┣ 📜styledJoin.ts
+ ┃ ┃ ┃ ┃ ┗ 📜styledLogin.ts
+ ┃ ┃ ┃ ┣ 📂todo
+ ┃ ┃ ┃ ┃ ┣ 📂modal
+ ┃ ┃ ┃ ┃ ┃ ┣ 📜styledCreateTodo.ts
+ ┃ ┃ ┃ ┃ ┃ ┣ 📜styledDetailTodo.ts
+ ┃ ┃ ┃ ┃ ┃ ┣ 📜styledEditTodo.ts
+ ┃ ┃ ┃ ┃ ┃ ┗ 📜styledTodoModal.ts
+ ┃ ┃ ┃ ┃ ┣ 📜styleTodoMain.ts
+ ┃ ┃ ┃ ┃ ┗ 📜styledTodoList.ts
+ ┃ ┃ ┃ ┣ 📜global.ts
+ ┃ ┃ ┃ ┣ 📜overlapStyle.ts
+ ┃ ┃ ┃ ┣ 📜styled404.ts
+ ┃ ┃ ┃ ┗ 📜styledHeader.ts
+ ┃ ┣ 📂utils
+ ┃ ┃ ┣ 📂hooks
+ ┃ ┃ ┃ ┣ 📜useApi.tsx
+ ┃ ┃ ┃ ┣ 📜useLoginState.tsx
+ ┃ ┃ ┃ ┗ 📜useTokenCheck.tsx
+ ┃ ┃ ┣ 📂types
+ ┃ ┃ ┃ ┣ 📂auth
+ ┃ ┃ ┃ ┃ ┗ 📜interface.ts
+ ┃ ┃ ┃ ┗ 📂todo
+ ┃ ┃ ┃ ┃ ┣ 📜interface.ts
+ ┃ ┃ ┃ ┃ ┗ 📜type.ts
+ ┃ ┃ ┗ 📜constants.ts
+ ┃ ┣ 📜App.test.tsx
+ ┃ ┣ 📜App.tsx
+ ┃ ┣ 📜AppStyled.ts
+ ┃ ┣ 📜index.tsx
+ ┃ ┣ 📜logo.svg
 ```
 
 # 로그인 하기 전 메인화면
@@ -164,6 +170,5 @@ https://user-images.githubusercontent.com/76980526/213650123-abf65bad-50ba-457e-
 <img width="1308" alt="image" src="https://user-images.githubusercontent.com/76980526/210545043-e0406302-5692-44d5-aadb-b5e2e169fe60.png">
 
 ## 후기
---- 
 
 > 2주라는 짧은 기간이었지만 그 어느때 보다 좋은 유용했던 시간이었던 것 같습니다. 파일 구조(관심사 분리), 새로운 기술들 (styled-component, react-query), TypeScript, 라이브러리 소스코드 확인하는 방법 등 혼자서 공부했으면 알기 힘든 내용들을 알 수 있는 경험이었던 것 같습니다.
