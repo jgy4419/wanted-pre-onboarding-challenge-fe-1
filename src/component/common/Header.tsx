@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import useTokenCheck from '../hook/login/useTokenCheck';
-import * as Head from '../styles/styledComponents/styledHeader';
-import { logout } from '../lib/auth/logout';
+import useTokenCheck from '../../utils/hooks/useTokenCheck';
+import * as Head from '../../styles/styledComponents/styledHeader';
+import { logout } from '../auth/hooks/useLogout';
 
 const Header = () => {
     const { tokenState } = useTokenCheck();

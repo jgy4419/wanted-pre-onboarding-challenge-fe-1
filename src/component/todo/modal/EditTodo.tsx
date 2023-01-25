@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import * as Edit from '../../../styles/styledComponents/todo/modal/styledEditTodo';
-import { usePutItem } from '../../../hook/api/todo/useTodoPut';
+import { usePutItem } from '../api/useTodoPut';
 import { IEditProps } from '../../../utils/types/todo/interface';
 
 const EditTodo = ({ todoClickedData, editStateFunc }: IEditProps) => {

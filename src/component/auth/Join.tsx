@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
-import { useAuthPost } from '../../hook/api/auth/useAuthPost';
+import { useAuthPost } from './api/useAuthPost';
 import * as JoinStyle from '../../styles/styledComponents/auth/styledJoin';
-import { authCheck } from '../../lib/auth/authCheck';
+import { authCheck } from '../auth/hooks/useAuthCheck';
 
 const Join = () => {
     // 변수명.. 잘 만들자..

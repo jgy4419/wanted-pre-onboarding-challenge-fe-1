@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import TodoModal from './modal/TodoModal';
 import { TodoType } from '../../utils/types/todo/type';
-import { useGetTodo } from '../../hook/api/todo/useTodoGet';
+import { useGetTodo } from './api/useTodoGet';
 import * as List from '../../styles/styledComponents/todo/styledTodoList';
 
 const TodoList = () => {

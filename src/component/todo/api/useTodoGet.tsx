@@ -1,5 +1,5 @@
 import { useQuery } from 'react-query';
-import api from '../../../lib/common/api';
+import api from '../../../utils/hooks/useApi';
 
 export function useGetTodo() {
     const { data: todoData } = useQuery('todos', async () => {

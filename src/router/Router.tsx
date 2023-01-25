@@ -1,8 +1,8 @@
 import { Route, Routes } from 'react-router-dom';
-import Auth from './pages/Auth';
-import TodoList from './component/todo/TodoList';
-import UseLoginHook from './hook/login/useLoginState';
-import Page404 from './pages/404';
+import Auth from '../pages/Auth';
+import TodoList from '../component/todo/TodoList';
+import UseLoginHook from '../utils/hooks/useLoginState';
+import Page404 from '../pages/404';
 
 const Router = () => {
     const MainLoginPage = UseLoginHook(TodoList);

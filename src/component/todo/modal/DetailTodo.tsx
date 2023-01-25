@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { useDeleteItem } from '../../../hook/api/todo/useTodoDelete';
-import { useTodoDetail } from '../../../hook/api/todo/useTodoGet';
+import { useDeleteItem } from '../api/useTodoDelete';
+import { useTodoDetail } from '../api/useTodoGet';
 import { modalPropsType } from '../../../utils/types/todo/type';
 import * as Detail from '../../../styles/styledComponents/todo/modal/styledDetailTodo';
 import EditTodo from './EditTodo';

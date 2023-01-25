@@ -1,5 +1,5 @@
 import { useRef, KeyboardEvent } from 'react';
-import { useLoginAuth } from '../../hook/api/auth/useAuthPost';
+import { useLoginAuth } from './api/useAuthPost';
 import * as LoginStyle from '../../styles/styledComponents/auth/styledLogin';
 
 const Login = () => {

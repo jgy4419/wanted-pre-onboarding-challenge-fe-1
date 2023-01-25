@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { IAuthPostType } from '../../../utils/types/auth/interface';
-import api from '../../../lib/common/api';
+import api from '../../../utils/hooks/useApi';
 
 export function useAuthPost() {
     const navigate = useNavigate();

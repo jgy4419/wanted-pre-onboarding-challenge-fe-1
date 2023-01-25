@@ -1,6 +1,6 @@
 import { ComponentType } from 'react';
 import Home from '../../pages/Home';
-import useTokenCheck from './useTokenCheck';
+import useTokenCheck from '../../utils/hooks/useTokenCheck';
 
 const useLoginState = (LoggingComponent: ComponentType) => {
     const { tokenState } = useTokenCheck();

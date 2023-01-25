@@ -1,6 +1,6 @@
 import { useMutation } from 'react-query';
 import { PostTodoType } from '../../../utils/types/todo/interface';
-import api from '../../../lib/common/api';
+import api from '../../../utils/hooks/useApi';
 
 export function useCreateTodo()  {
     const createTodo = useMutation('createTodo', async ({ title, content }: PostTodoType) => {

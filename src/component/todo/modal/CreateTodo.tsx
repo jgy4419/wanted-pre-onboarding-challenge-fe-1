@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { modalStateFuncType } from '../../../utils/types/todo/interface';
-import { useCreateTodo } from '../../../hook/api/todo/useTodoPost';
+import { useCreateTodo } from '../api/useTodoPost';
 import * as Create from '../../../styles/styledComponents/todo/modal/styledCreateTodo';
 
 const CreateTodo = ({ modalStateFunc }: modalStateFuncType) => {
